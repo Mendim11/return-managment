@@ -6,20 +6,18 @@ Thumbs.db
 .vscode/
 .idea/
 
-# Node (if any)
-node_modules/
-
 # Logs
 *.log
 
-# Environment / secrets
+# Environment variables
 .env
 
-# Database config (if it contains credentials)
+# Database credentials
 db.php
-
-# XAMPP / local server files
-.htaccess
 
 # Cache / temp
 /tmp/
+cache/
+
+# Uploads (if users upload files)
+uploads/
