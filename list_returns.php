@@ -67,6 +67,33 @@ $result = $conn->query($sql);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Returns Admin Panel</title>
     <style>
+        .pagination{
+    margin-top:30px;
+    text-align:center;
+}
+
+.pagination a{
+    padding:8px 14px;
+    margin:3px;
+    background:#f1f1f1;
+    color:#333;
+    text-decoration:none;
+    border-radius:5px;
+    border:1px solid #ccc;
+    font-weight:bold;
+}
+
+.pagination a:hover{
+    background:#007bff;
+    color:white;
+}
+
+.pagination a.active{
+    background:#007bff;
+    color:white;
+    border-color:#007bff;
+}
+
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f6f8;
@@ -212,16 +239,29 @@ if ($result->num_rows > 0):
 </table>
 
 <!-- Pagination -->
-<div style="margin-top:20px;">
-    <?php for($i=1;$i<=$totalPages;$i++): ?>
-        <?php 
-            $active = ($i==$page) ? 'style="font-weight:bold;"' : ''; 
-            $params = $_GET;
-            $params['page'] = $i;
-        ?>
-        <a <?= $active ?> href="?<?= http_build_query($params) ?>"> <?= $i ?> </a>
-    <?php endfor; ?>
+<div class="pagination" style="margin-top:20px;">
+<!-- Pagination -->
+<div class="pagination">
+
+<?php if($page > 1): ?>
+    <a href="?<?= http_build_query(array_merge($_GET,['page'=>$page-1])) ?>">Prev</a>
+<?php endif; ?>
+
+<?php for($i=1;$i<=$totalPages;$i++): ?>
+    <?php 
+        $active = ($i==$page) ? 'class="active"' : ''; 
+        $params = $_GET;
+        $params['page'] = $i;
+    ?>
+    <a <?= $active ?> href="?<?= http_build_query($params) ?>"><?= $i ?></a>
+<?php endfor; ?>
+
+<?php if($page < $totalPages): ?>
+    <a href="?<?= http_build_query(array_merge($_GET,['page'=>$page+1])) ?>">Next</a>
+<?php endif; ?>
+
 </div>
+
 
 <?php else: ?>
 <p>No returns found</p>

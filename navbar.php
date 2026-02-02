@@ -41,6 +41,10 @@ $role = $_SESSION['role'] ?? '';
 .logout {
     color: #dc3545;
 }
+.navbar {
+    margin-bottom: 25px;
+}
+
 </style>
 
 <div class="navbar">

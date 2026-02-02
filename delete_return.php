@@ -17,6 +17,12 @@ if (!isset($_SESSION['user_id'])) {
 <?php
 include 'db.php';
 
+$uid = $_SESSION['user_id'];
+$action = "Deleted return #$return_id";
+
+$conn->query("INSERT INTO activity_logs (user_id, action) 
+              VALUES ($uid, '$action')");
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $return_id = $_POST['return_id'];
