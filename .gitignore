@@ -11,7 +11,7 @@ Thumbs.db
 
 # Environment variables
 .env
-
+mail_config.php
 # Database credentials
 db.php
 
